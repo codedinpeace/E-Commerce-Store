@@ -8,7 +8,7 @@
   "main": "src/script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/script.js"
+    "dev": "nodemon script.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
