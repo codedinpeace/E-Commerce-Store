@@ -267,7 +267,7 @@ Choose a license and place a `LICENSE` file in repo. e.g. MIT.
 
 ## Contact
 
-Project owner: your GitHub profile (replace in README)
+Project owner: codedinpeace
 
 ---
 
