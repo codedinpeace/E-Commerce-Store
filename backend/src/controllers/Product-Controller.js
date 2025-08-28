@@ -39,4 +39,32 @@ const edit = async (req,res)=>{
     }
 }
 
-module.exports = {add, remove, edit}
+const getProducts = async (req, res) => {
+    try {
+        const { categories, search, minPrice, maxPrice } = req.query;
+        const query = {};
+
+        // Category filter
+        if (categories) {
+            const categoryArray = categories.split(','); // e.g. "men,kids" -> ["men", "kids"]
+            query.category = { $in: categoryArray };
+        }
+
+        // Search by name
+        if (search) {
+            query.productName = { $regex: search, $options: 'i' };
+        }
+
+        // Price filter
+        if (minPrice) query.price = { $gte: Number(minPrice) };
+        if (maxPrice) query.price = { ...query.price, $lte: Number(maxPrice) };
+
+        const products = await Product.find(query);
+        res.status(200).json(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Something went wrong while fetching products" });
+    }
+};
+
+module.exports = { add, remove, edit, getProducts };
