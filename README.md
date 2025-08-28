@@ -1,8 +1,4 @@
 # E-Commerce-Store
-A mordernly designed MERN stack e commerce store
-
-
-# E-Commerce-Store
 
 A modern MERN stack e‑commerce store. Backend (Express + MongoDB) lives in `backend/`. Frontend (React, Vite) lives in `frontend/`.
 
