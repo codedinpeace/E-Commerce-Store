@@ -259,16 +259,6 @@ yarn-error.log*
 
 ---
 
-## License
-
-Choose a license and place a `LICENSE` file in repo. e.g. MIT.
-
----
-
 ## Contact
 
 Project owner: codedinpeace
-
----
-
-If you want, I can also produce a `backend/.env.example` file and a ready-to-use root `.gitignore` and add them to the canvas.
