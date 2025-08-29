@@ -8,7 +8,7 @@ const protectedRouteMiddleware = require('./middlewares/protectedRoutes.js')
 const productRoutes = require('./routes/productRoutes.js')
 const cartRoutes = require('./routes/cartRoutes.js')
 const checkoutRoutes = require('./routes/checkoutRoutes.js')
-const cors = require('cors')
+const cors = require('cors')        
 connection()
 
 const app = express()
