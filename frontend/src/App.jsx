@@ -6,7 +6,7 @@ import CollectionPage from "./Pages/CollectionPage";
 import AdminDashboard from "./Pages/AdminDashboard";
 import CheckOut from "./Components/CheckOut";
 import ProductPage from "./Components/ProductPage";
-import { AnimatedGridPattern } from "@/Components/magicui/animated-grid-pattern";
+import { AnimatedGridPattern } from "@/Components/magicui/animated-grid-pattern.jsx";
 
 function App() {
   return (
