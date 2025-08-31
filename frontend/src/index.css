@@ -1,2 +1,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+/* Set DaisyUI theme here */
+body{
+    overflow-x: hidden;
+}

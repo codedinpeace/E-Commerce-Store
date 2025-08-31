@@ -8,10 +8,12 @@ import Cart from './Pages/Cart'
 import Signup from './Pages/Signup'
 import Login from './Pages/Login'
 import AdminPage from './Pages/AdminPage'
+import Navbar from './Components/Navbar'
 
 const App = () => {
   return (
     <div>
+      <Navbar/>
       <Routes>
         <Route to="/" element={<LandingPage />}/>
         <Route to="/Men" element={<Men />}/>
