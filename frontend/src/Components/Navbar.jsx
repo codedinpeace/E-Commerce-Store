@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import {Link} from 'react-router-dom'
-import logo from '/Assets/Frontend_Assets/logo.png'
+import logo from '../assets/Assets/Frontend_Assets/logo.png'
 import { ShoppingCart, Menu, X } from 'lucide-react'
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -46,7 +46,7 @@ const Navbar = () => {
             <h1 className='text-2xl font-semibold'>SHOPPER</h1>
           </div>
         </Link>
-        <div className='flex gap-5 text-xl items-center'>
+        <div className='flex gap-5 text-xl items-center font-semibold'>
           <Link to="/" className='hover:text-gray-500'>Home</Link>
           <Link to="/Men" className='hover:text-gray-500'>Men</Link>
           <Link to="/Women" className='hover:text-gray-500'>Women</Link>
@@ -65,7 +65,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Nav */}
-      <div className='md:hidden flex justify-between px-10 py-2 items-end bg-[#f1f1f1]'>
+      <div className='md:hidden flex justify-between px-10 py-2 items-end '>
         <Link to="/">
           <div className='flex items-end gap-2'>
             <img src={logo} className='w-13' alt="Logo" />
