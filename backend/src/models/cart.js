@@ -11,6 +11,12 @@
             },
             quantity:{
                 type:Number, default:1, required:true,
+            },
+            totalPrice:{
+                type:String,
+            },
+            size:{
+                type:String,
             }
         }
         ]

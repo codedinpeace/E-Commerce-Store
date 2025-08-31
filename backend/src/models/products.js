@@ -16,6 +16,10 @@ const productSchema = mongoose.Schema({
         type:String,
     },
 
+    size:{
+        type:String,
+    },
+
     category:{
         type:String,
         required:true,
