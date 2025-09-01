@@ -8,6 +8,7 @@ const protectedRouteMiddleware = require('./middlewares/protectedRoutes.js')
 const productRoutes = require('./routes/productRoutes.js')
 const cartRoutes = require('./routes/cartRoutes.js')
 const checkoutRoutes = require('./routes/checkoutRoutes.js')
+const ReviewRoutes = require('./routes/ReviewRoutes.js')
 const cors = require('cors')        
 connection()
 
@@ -16,13 +17,13 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
-app.use(express.static(path.join(__dirname, "public")))
 
 app.use(cors())
 app.use("/api/auth", authRoutes)    
 app.use("/api/product", protectedRouteMiddleware, productRoutes)
 app.use('/api/cart', protectedRouteMiddleware, cartRoutes)
 app.use('/api/checkOut', protectedRouteMiddleware, checkoutRoutes)
+app.use("/api/add-review", ReviewRoutes)
 
 app.listen(process.env.SERVER_PORT, ()=>{
     console.log(`Server is running successfully\n URL : http://localhost/${process.env.SERVER_PORT}`)

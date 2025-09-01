@@ -2,7 +2,8 @@
 @plugin "daisyui";
 
 /* Set DaisyUI theme here */
-body{
+body, html{
     overflow-x: hidden;
     font-family: "Outfit";
+    scroll-behavior: smooth;
 }

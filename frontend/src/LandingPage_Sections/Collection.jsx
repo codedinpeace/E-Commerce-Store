@@ -42,7 +42,7 @@ const Collection = () => {
         ]
       };
   return (
-    <div>
+    <div id='collections'>
         <div>
             <div className='flex flex-col items-center justify-center mt-5 mb-10'>
             <h1 className='text-3xl font-semibold '>New Collections</h1>

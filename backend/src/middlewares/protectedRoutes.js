@@ -15,4 +15,4 @@
         }
     }
 
-    module.exports = protectedRouteMiddleware
+    module.exports = protectedRouteMiddleware   
