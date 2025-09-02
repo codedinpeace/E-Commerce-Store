@@ -42,7 +42,7 @@ const Collection = () => {
         ]
       };
   return (
-    <div id='collections'>
+    <div id='collections' className='mb-10 mt-10'>
         <div>
             <div className='flex flex-col items-center justify-center mt-5 mb-10'>
             <h1 className='text-3xl font-semibold '>New Collections</h1>
@@ -52,8 +52,13 @@ const Collection = () => {
             <Slider {...settings} className='pl-10'>  
             {new_collections.map((collection)=>(
                 <div key={collection.id}>
-                    <Link to={`/product/${collection.id}`}>
                 <img src={collection.image} className='w-90 max-md:w-50 cursor-pointer hover:scale-105 transition-all duration-150' alt="" />
+                    <Link to={`/product/${collection.id}`}>
+                <p className='hover:underline text-lg max-w-sm mt-4'>{collection.name}</p>
+                <div className='flex gap-3'>
+                  <p className='line-through hover:underline text-lg'>${collection.old_price}</p>
+                  <p className='text-lg hover:underline font-semibold text-orange-600'>${collection.new_price}</p>  
+                </div>
                     </Link>
                 </div>
             ))}

@@ -2,6 +2,7 @@ import React from "react";
 import heroImg from "/hero_image.png";
 import { MoveRight } from "lucide-react";
 import Collection from "../LandingPage_Sections/Collection";
+import PopularWomen from "../LandingPage_Sections/PopularWomen";
 // import { Link } from "react-router-dom";
 
 const LandingPage = () => {
@@ -31,6 +32,7 @@ const LandingPage = () => {
         </div>
       </div>
       <Collection />
+      <PopularWomen />
     </>
   );
 };
