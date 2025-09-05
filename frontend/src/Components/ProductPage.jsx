@@ -6,41 +6,49 @@ import starDull from "../assets/Assets/Frontend_Assets/star_dull_icon.png";
 import star from "../assets/Assets/Frontend_Assets/star_icon.png";
 import { Link } from "react-router-dom";
 import all_product from "../assets/Assets/Frontend_Assets/all_product.js";
+import ReviewSection from "./ReviewSection.jsx";
 
 const ProductPage = () => {
   const { id } = useParams();
   const sizes = ["S", "M", "L", "XL", "XXL"];
-  const collectionProduct = new_collections.find((item) => item.id === parseInt(id));
-  const menProduct = all_product.filter((men)=>{
-    return men.category === "men"
-  })
-  const womenProduct = all_product.filter((men)=>{
-    return men.category === "women"
-  })
-  const kidsProduct = all_product.filter((men)=>{
-    return men.category === "kid"
-  })
+  const collectionProduct = new_collections.find(
+    (item) => item.id === parseInt(id)
+  );
+  const menProduct = all_product.filter((men) => {
+    return men.category === "men";
+  });
+  const womenProduct = all_product.filter((men) => {
+    return men.category === "women";
+  });
+  const kidsProduct = all_product.filter((men) => {
+    return men.category === "kid";
+  });
 
   const all_products = [
-    ...new_collections,...menProduct,...womenProduct, ...kidsProduct
-  ]
+    ...new_collections,
+    ...menProduct,
+    ...womenProduct,
+    ...kidsProduct,
+  ];
 
-  const product = all_products.find((p)=> String(p.id) === id)
+  const product = all_products.find((p) => String(p.id) === id);
 
   const { selectedSize, setSelectedSize } = useStore();
 
   return (
     <div>
       <div className="mt-10 flex justify-center  max-md:flex-col max-md:items-center  gap-10 max-xl:gap-5">
-        
-
         <div className="w-20 max-2xl:w-16  max-md:hidden flex-col  flex  max-md:justify-center gap-8 max-2xl:gap-4 cursor-pointer ">
           <img src={product.image} alt="" />
           <img src={product.image} alt="" />
           <img src={product.image} alt="" />
           <img src={product.image} alt="" />
         </div>
-        <img src={product.image} className="w-100 max-2xl:w-80 max-2xl:h-[420px] h-[500px]" alt="" />
+        <img
+          src={product.image}
+          className="w-100 max-2xl:w-80 max-2xl:h-[420px] h-[500px]"
+          alt=""
+        />
         <div>
           <h1 className="text-5xl max-lg:text-2xl  max-lg:max-w-[300px] max-md:max-w-md max-md:mx-auto max-md:text-center max-2xl:text-3xl max-2xl:max-w-md font-semibold max-w-2xl mt-5">
             {product.name}
@@ -55,10 +63,10 @@ const ProductPage = () => {
             necessitatibus deleniti.
           </p>
           <div className="flex gap-2 max-md:justify-center   mt-5 ">
-            <img src={star}  className="w-5 h-5"   alt="" />
-            <img src={star} className="w-5 h-5"  alt="" />
-            <img src={star}  className="w-5 h-5" alt="" />
-            <img src={star}  className="w-5 h-5" alt="" />
+            <img src={star} className="w-5 h-5" alt="" />
+            <img src={star} className="w-5 h-5" alt="" />
+            <img src={star} className="w-5 h-5" alt="" />
+            <img src={star} className="w-5 h-5" alt="" />
             <img src={starDull} alt="" />
             <p>(121)</p>
           </div>
@@ -78,7 +86,7 @@ const ProductPage = () => {
                   className={`px-4 max-lg:text-[12px] cursor-pointer py-4 ${
                     selectedSize === size
                       ? "bg-orange-600 text-white"
-                      : "bg-gray-200" 
+                      : "bg-gray-200"
                   } active:scale-90`}
                 >
                   {size}
@@ -97,87 +105,18 @@ const ProductPage = () => {
         </div>
       </div>
       <div>
-    <div className="flex justify-center mt-10 mb-10">
-      <h1 className="text-3xl font-medium  ">User Reviews</h1>
-    </div>
+        <div className="flex justify-center mt-10 mb-10">
+          <h1 className="text-3xl font-medium  ">User Reviews</h1>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-10">
-              
-
-  <article className="rounded-2xl border p-5 shadow-sm bg-white ">
-    <div className="flex items-center justify-between">
-      <span className="text-sm font-medium text-neutral-500">Rating</span>
-      <span className="text-sm font-semibold">5/5 ⭐⭐⭐⭐⭐</span>
-    </div>
-    <h3 className="mt-3 text-lg font-semibold">User: Aditi Verma</h3>
-    <p className="mt-2 text-neutral-700 ">
-      Smooth checkout and fast delivery. Product matched the photos exactly. Will buy again.
-    </p>
-  </article>
-
-  
-  <article className="rounded-2xl border p-5 shadow-sm bg-white ">
-    <div className="flex items-center justify-between">
-      <span className="text-sm font-medium text-neutral-500">Rating</span>
-      <span className="text-sm font-semibold">4/5 ⭐⭐⭐⭐☆</span>
-    </div>
-    <h3 className="mt-3 text-lg font-semibold">User: Rohan Das</h3>
-    <p className="mt-2 text-neutral-700 ">
-      Great quality for the price. Packaging could be better, but overall a solid purchase.
-    </p>
-  </article>
-
-  
-  <article className="rounded-2xl border p-5 shadow-sm bg-white ">
-    <div className="flex items-center justify-between">
-      <span className="text-sm font-medium text-neutral-500">Rating</span>
-      <span className="text-sm font-semibold">4.5/5 ⭐⭐⭐⭐✰</span>
-    </div>
-    <h3 className="mt-3 text-lg font-semibold">User: Meera K.</h3>
-    <p className="mt-2 text-neutral-700 ">
-      Fit was perfect and fabric feels premium. Minor delay in shipping, but support was responsive.
-    </p>
-  </article>
-
- 
-  <article className="rounded-2xl border p-5 shadow-sm bg-white 0">
-    <div className="flex items-center justify-between">
-      <span className="text-sm font-medium text-neutral-500">Rating</span>
-      <span className="text-sm font-semibold">5/5 ⭐⭐⭐⭐⭐</span>
-    </div>
-    <h3 className="mt-3 text-lg font-semibold">User: Vikram Singh</h3>
-    <p className="mt-2 text-neutral-700 0">
-      Exactly as described. Clean design, true-to-size, and the customer service was top-notch.
-    </p>
-  </article>
-
-  
-  <article className="rounded-2xl border p-5 shadow-sm bg-white 0">
-    <div className="flex items-center justify-between">
-      <span className="text-sm font-medium text-neutral-500">Rating</span>
-      <span className="text-sm font-semibold">3.5/5 ⭐⭐⭐✰✰</span>
-    </div>
-    <h3 className="mt-3 text-lg font-semibold">User: Sana Rahman</h3>
-    <p className="mt-2 text-neutral-700 0">
-      Decent item. Color was slightly different from the photos. Return process was easy though.
-    </p>
-  </article>
-
-  
-  <article className="rounded-2xl border p-5 shadow-sm bg-white 0">
-    <div className="flex items-center justify-between">
-      <span className="text-sm font-medium text-neutral-500">Rating</span>
-      <span className="text-sm font-semibold">4.8/5 ⭐⭐⭐⭐⭐</span>
-    </div>
-    <h3 className="mt-3 text-lg font-semibold">User: Arjun Mehta</h3>
-    <p className="mt-2 text-neutral-700 0">
-      Loved the build quality and the packaging. Arrived earlier than expected. Recommended.
-    </p>
-  </article>
-</div>  
-              <div className="flex justify-center text-xl mt-10">
-            <Link to="/add-review"><button className="bg-orange-600 px-6 py-2 rounded-xl text-white border-2 border-orange-600 hover:bg-transparent transition-all duration-175 cursor-pointer hover:text-black">Add a review</button></Link>
-              </div>
+        <ReviewSection />
+        <div className="flex justify-center text-xl mt-10">
+          <Link to="/add-review">
+            <button className="bg-orange-600 px-6 py-2 rounded-xl text-white border-2 border-orange-600 hover:bg-transparent transition-all duration-175 cursor-pointer hover:text-black">
+              Add a review
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
