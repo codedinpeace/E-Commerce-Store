@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {UserRound, Mail, KeyRound, Eye,EyeClosed} from 'lucide-react'
 import {useAuthStore} from '../States/authStore'
+import { Link } from 'react-router-dom'
 
 const Signup = () => {
 
@@ -19,6 +20,9 @@ const Signup = () => {
     signUpUser(authUser)
   }
 
+  if(isSigningUp){
+    return <div className="flex justify-center items-center h-screen">Loading...</div>
+  }
 
   function onNameChange(e){
     setAuthUser(prev=>({
@@ -81,7 +85,7 @@ const Signup = () => {
 </div>
           <div className='flex  gap-5 items-end'  >
           <button type='submit' className='w-40 h-10 rounded-md bg-orange-600 hover:bg-orange-700 cursor-pointer transition-all duration-150 text-white text-lg'>Sign Up</button>
-          <p className='text-lg'>Already have an account? <a href="/login" className='text-orange-600 underline underline-offset-1 text-lg'>Login</a></p>
+          <p className='text-lg flex gap-1'>Already have an account? <Link to="/login"><p className='text-orange-500 underline underline-offset-2'>Login</p></Link></p>
           </div>
         </div>
       </form>

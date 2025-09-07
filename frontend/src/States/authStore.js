@@ -7,16 +7,15 @@
         authUser:null,
         isLoggingIn:false,
         isSigningUp: false,
-        isLoggingIn: false,
         isCheckingAuth:false,
+        isLogginOut:false,
 
             signUpUser: async (data) => {
+                set({isSigningUp:true})
                 try {
-                    set({isSigningUp:true})
                     const response = await axiosInstance.post("/auth/signup", data)
                     const {name,email,password, token} = response.data
                     set({authUser:{name,email,password}})
-                    localStorage.setItem({"token":token})
                     toast.success("Successfully signed up")
                     console.log("response: ", response.data)
                     set({isLoggedIn:true})
@@ -28,8 +27,8 @@
                 }
                 },
                     Loginuser: async(data)=>{
+                        set({isLoggingIn : true})
                         try {
-                            set({isLoggingIn : true})
                             const response = await axiosInstance.post("/auth/login", data)
                         set({authUser:response.data})
                             set({isLoggedIn : true})
@@ -38,26 +37,37 @@
                             toast.error("Something went wrong")
                             console.log(error)
                         } finally{
-                            set({isLoggingIn : false})
+                            set({isLoggingIn : false})          
                         }
                     },
-                        Check : async() =>{ 
-                            try {
-                                set({isLoggingIn:true})
-                                set({isCheckingAuth:true})
-                                const response = await axiosInstance.post("/auth/check")
-                                set({
-                                    authUser:response.data,
-                                    isLoggedIn:true,
-                                    isLoggingIn:false
-                                })
-                                toast.success("Authentication check successfull")
-                            } catch (error) {
-                                toast.error("Something went wrong while checking authentication")
-                                console.log(error)                          
-                            } finally{
-                                set({isLoggingIn:false})
-                                set({isCheckingAuth:false})
-                            }
+                    Check: async () => {
+                        set({ isLoggingIn: true, isCheckingAuth: true })
+                        try {
+                          const response = await axiosInstance.get("/auth/check")
+                      
+                          set({
+                            authUser: response.data,
+                            isLoggedIn: true
+                          })
+                        } catch (error) {
+                          toast.error("Something went wrong while checking authentication")
+                          console.log(error)
+                        } finally {
+                          set({ isLoggingIn: false, isCheckingAuth: false })
                         }
+                      },
+
+                      LogOut: async ()=>{
+                        set({isLogginOut:true})
+                        try {
+                            const response = await axiosInstance.post("/auth/logout")
+                            set({authUser:response.data, isLoggedIn:false})
+                            toast.success("Successfully Logged Out")
+                        } catch (error) {
+                            console.log(error)
+                            toast.error("Something went wrong")
+                        } finally{
+                            set({isLogginOut:false})
+                        }
+                      }
             }))

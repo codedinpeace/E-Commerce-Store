@@ -26,7 +26,7 @@ const App = () => {
   }, [])
 
   const location = useLocation()
-  const hideFooterRoutes = ["/login", "/signup"]
+  const hideFooterRoutes = ["/login", "/signup", "/profile"]
   const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
 
   return (

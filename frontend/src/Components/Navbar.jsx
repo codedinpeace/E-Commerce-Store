@@ -105,9 +105,22 @@
                 <Link to="/Women" className='hover:text-gray-500' onClick={closeMenu}>Women</Link>
                 <Link to="/Kids" className='hover:text-gray-500' onClick={closeMenu}>Kids</Link>
                 <div className='flex items-center gap-4 mt-6'>
-                  <Link to="/login" onClick={closeMenu}>
-                    <button className='btn btn-sm rounded-full px-6'>Login</button>
+                {
+                isLoggedIn ? (
+                  <Link to="/profile">
+                  <div className="w-10 text-xl font-semibold h-10 rounded-full bg-gray-200 cursor-pointer flex items-center justify-center">
+          {/* {authUser?.name.split("")[0] || "U"} */}
+          <img src="https://png.pngtree.com/png-clipart/20190904/original/pngtree-user-cartoon-girl-avatar-png-image_4492903.jpg" alt="" />
+        </div>
                   </Link>
+      ) : (
+        <Link to="/login">
+        <button className="btn btn-xs rounded-full sm:btn-sm md:btn-md lg:btn-lg xl:px-10">
+          Login
+        </button>
+              </Link>
+      )
+    }
                   <Link to="/cart" onClick={closeMenu}>
                     <ShoppingCart className='w-8 h-8 cursor-pointer'/>
                   </Link>

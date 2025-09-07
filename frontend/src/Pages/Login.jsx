@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import { useAuthStore } from '../States/authStore'
 import {Mail, KeyRound, EyeClosed, Eye } from "lucide-react"
+import { Link } from 'react-router-dom' 
 
 const Login = () => {
   const {isLoggingIn, Loginuser, } = useAuthStore()
@@ -10,6 +11,10 @@ const Login = () => {
     email:"",
     password:"",
   })
+
+  if(isLoggingIn){
+    return <div className="flex justify-center items-center h-screen">Loading...</div>
+  }
   
   const[visiblePassword, setVisiblePassword] = useState(false)
 
@@ -68,8 +73,8 @@ const Login = () => {
   { visiblePassword ? <EyeClosed onClick={()=>{setVisiblePassword(false)}} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600 cursor-pointer"/> : <Eye onClick={()=>{setVisiblePassword(true)}} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600 cursor-pointer" />}
 </div>
           <div className='flex  gap-5 items-end'  >
-          <button type='submit' className='w-40 h-10 rounded-md bg-orange-600 hover:bg-orange-700 cursor-pointer transition-all duration-150 text-white text-lg'>Login</button>
-          <p className='text-lg'>Already have an account? <a href="/signup" className='text-orange-600 underline underline-offset-1 text-lg'>Signup</a></p>
+          <button type='submit' className=' w-40 h-10 rounded-md bg-orange-600 hover:bg-orange-700 cursor-pointer transition-all duration-150 text-white text-lg'>Login</button>
+          <p className='text-lg flex gap-1'>Already have an account? <Link to="/signup"><p className='text-orange-500 underline underline-offset-2'>SignUp</p></Link></p>
           </div>
         </div>
       </form>
