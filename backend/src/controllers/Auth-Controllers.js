@@ -50,6 +50,7 @@ const signup = async (req, res) => {
                 generateToken(user._id, res)
             res.status(200).json({
                 _id:user._id,
+                name:user.name,
                 email:user.email,
             })
         }
@@ -65,6 +66,16 @@ const logout = (req,res)=>{
     } catch (error) {
         res.status(500).json({message:"Something went wrong while logging out"})
     }
-}
 
-module.exports = {signup, login, logout}
+  }
+  const check = (req,res)=>{
+    try{
+      if(!req.user) return res.json({message:"User is not authenticated"})
+        res.json(req.user)  
+    }
+    catch(error){
+      res.json({message:"Error occured"})
+    }
+  }
+
+module.exports = {signup, login, logout, check}

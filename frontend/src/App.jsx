@@ -1,8 +1,9 @@
-import React, { Suspense, lazy } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import React, { Suspense, lazy, useEffect } from "react";
+import { Route, Routes, useLocation} from "react-router-dom";
 import Navbar from "./Components/Navbar";
 const Footer = lazy(()=> import("./Components/Footer"));
 import { Toaster } from "react-hot-toast";
+import { useAuthStore } from "./States/authStore";
 
 // Lazy imports for route-based code splitting
 const LandingPage = lazy(() => import("./Pages/LandingPage"));
@@ -14,8 +15,15 @@ const Signup = lazy(() => import("./Pages/Signup"));
 const Login = lazy(() => import("./Pages/Login"));
 const AdminPage = lazy(() => import("./Pages/AdminPage"));
 const ProductPage = lazy(() => import("./Components/ProductPage")); 
+const ProfileSection = lazy(() => import("./Components/ProfileSection")); 
 
 const App = () => {
+
+  const {isLoggedIn, Check} = useAuthStore()
+
+  useEffect(()=>{
+    Check()
+  }, [])
 
   const location = useLocation()
   const hideFooterRoutes = ["/login", "/signup"]
@@ -31,11 +39,12 @@ const App = () => {
           <Route path="/Men" element={<Men />} />
           <Route path="/Women" element={<Women />} />
           <Route path="/Kids" element={<Kids />} />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/AdminPage" element={<AdminPage />} />
+          <Route path="/Cart" element={ isLoggedIn ?  <Cart /> : <Signup />} />
+          <Route path="/AdminPage" element={isLoggedIn ? <AdminPage /> : <Signup />} />
           <Route path="/product/:id" element={<ProductPage />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={isLoggedIn ? <LandingPage /> : <Signup />} />
+        <Route path="/Login" element={isLoggedIn ? <LandingPage /> : <Login />} />
+        <Route path ="/profile" element={isLoggedIn ? <ProfileSection /> : <Login />}/> 
         </Routes>
       </Suspense>
      
