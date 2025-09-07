@@ -3,31 +3,43 @@ const User = require('../models/userModel.js')
 const bcrypt = require('bcrypt')
 const generateToken = require('../lib/generate-token.js')
 
-const signup = async (req,res) => {
-
-    const {name, email, password} = req.body
-
+const signup = async (req, res) => {
+    const { name, email, password } = req.body;
+  
     try {
-        const existingUser = await User.findOne({email})
-        if(existingUser) return res.status(300).json({message:"User already exists"})
-        const salt = await bcrypt.genSalt(12)
-        const hashedPassword = await bcrypt.hash(password,salt)
-        const newUser = await User.create({
-            name,
-            email,
-            password:hashedPassword
-        })
-        generateToken(newUser._id, res)
-        res.status(200).json({
-            _id:newUser._id,
-            name:newUser.name,
-            email:newUser.email,
-        })
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res.status(409).json({ message: "User already exists" });
+      }
+  
+      const salt = await bcrypt.genSalt(12);
+      const hashedPassword = await bcrypt.hash(password, salt);
+  
+      const newUser = await User.create({
+        name,
+        email,
+        password: hashedPassword,
+      });
+  
+      // generateToken may throw error
+      try {
+        generateToken(newUser._id, res);
+      } catch (tokenError) {
+        console.log(tokenError)
+        return res.status(500).json({ message: "Token generation failed" });
+      }
+  
+      return res.status(201).json({
+        _id: newUser._id,   
+        name: newUser.name,
+        email: newUser.email,
+      });
     } catch (error) {
-        res.status(400).json({message:"Something went wrong"})
+      console.error(error);
+      return res.status(500).json({ message: "Server error" });
     }
-}
-
+  };
+  
     const login = async (req,res)=>{
         try{
             const { email, password} = req.body

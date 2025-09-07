@@ -41,11 +41,12 @@ const Collection = () => {
           }
         ]
       };
+      
   return (
     <div id='collections' className='mb-10 mt-10'>
         <div>
             <div className='flex flex-col items-center justify-center mt-5 mb-10'>
-            <h1 className='text-3xl font-semibold '>New Collections</h1>
+            <h1 className='text-3xl font-semibold '>New Collection</h1>
             <p className='text-xl underline underline-offset-2 mb-10 opacity-70'>Our Most New Collections</p>
             </div>
             {/* <div className='flex flex-wrap justify-around'> */}
