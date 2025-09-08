@@ -74,7 +74,7 @@ const Login = () => {
 </div>
           <div className='flex  gap-5 items-end'  >
           <button type='submit' className=' w-40 h-10 rounded-md bg-orange-600 hover:bg-orange-700 cursor-pointer transition-all duration-150 text-white text-lg'>Login</button>
-          <p className='text-lg flex gap-1'>Already have an account? <Link to="/signup"><p className='text-orange-500 underline underline-offset-2'>SignUp</p></Link></p>
+          <h1 className='text-lg flex gap-1'>Already have an account? <Link to="/signup"><p className='text-orange-500 underline underline-offset-2'>SignUp</p></Link></h1>
           </div>
         </div>
       </form>

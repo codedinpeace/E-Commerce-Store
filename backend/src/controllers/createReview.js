@@ -9,7 +9,7 @@ const createReview = async (req,res)=>{
             review,
         })
 
-        res.status(200).json(createReview)
+        res.status(200).json(createdReview) 
     } catch (error) {
         res.status(400).json({message:"Something went wrong while creating review"})
     }

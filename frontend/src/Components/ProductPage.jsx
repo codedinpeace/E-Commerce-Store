@@ -111,7 +111,7 @@ const ProductPage = () => {
 
         <ReviewSection />
         <div className="flex justify-center text-xl mt-10">
-          <Link to="/add-review">
+          <Link to={`/product/${product.id}/add-review`}>
             <button className="bg-orange-600 px-6 py-2 rounded-xl text-white border-2 border-orange-600 hover:bg-transparent transition-all duration-175 cursor-pointer hover:text-black">
               Add a review
             </button>

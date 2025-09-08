@@ -1,6 +1,13 @@
 import React from 'react'
 
+import { useReviewStore } from '../States/ReviewStore'
+import { useAuthStore } from '../States/authStore'
+
 const ReviewSection = () => {
+
+  const {Review} = useReviewStore()
+  const {authUser} = useAuthStore()
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-10">
  
@@ -64,14 +71,14 @@ const ReviewSection = () => {
   </article>
 
   
-  <article className="rounded-2xl border p-5 shadow-sm bg-white 0">
+  <article className={` ${Review ? "rounded-2xl border p-5 shadow-sm bg-white 0" : "hidden"}`}>
     <div className="flex items-center justify-between">
       <span className="text-sm font-medium text-neutral-500">Rating</span>
-      <span className="text-sm font-semibold">4.8/5 ⭐⭐⭐⭐⭐</span>
+      <span className="text-sm font-semibold">{Review ? Review.rating : "No Reviews Yet"}/5 ⭐⭐⭐⭐⭐</span>
     </div>
-    <h3 className="mt-3 text-lg font-semibold">User: Arjun Mehta</h3>
+    <h3 className="mt-3 text-lg font-semibold">User: {authUser.name}</h3>
     <p className="mt-2 text-neutral-700 0">
-      Loved the build quality and the packaging. Arrived earlier than expected. Recommended.
+    {Review ? Review : "No Reviews Yet"}
     </p>
   </article>
     </div>

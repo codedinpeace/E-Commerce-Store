@@ -4,6 +4,7 @@ import Navbar from "./Components/Navbar";
 const Footer = lazy(()=> import("./Components/Footer"));
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./States/authStore";
+import AddReview from "./Pages/AddReview";
 
 // Lazy imports for route-based code splitting
 const LandingPage = lazy(() => import("./Pages/LandingPage"));
@@ -20,13 +21,13 @@ const ProfileSection = lazy(() => import("./Components/ProfileSection"));
 const App = () => {
 
   const {isLoggedIn, Check} = useAuthStore()
-
+  
   useEffect(()=>{
     Check()
   }, [])
 
   const location = useLocation()
-  const hideFooterRoutes = ["/login", "/signup", "/profile"]
+  const hideFooterRoutes = ["/login", "/signup", "/profile", "/add-review"]
   const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
 
   return (
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="/Signup" element={isLoggedIn ? <LandingPage /> : <Signup />} />
         <Route path="/Login" element={isLoggedIn ? <LandingPage /> : <Login />} />
         <Route path ="/profile" element={isLoggedIn ? <ProfileSection /> : <Login />}/> 
+        <Route path="/product/:id/add-review" element={isLoggedIn ? <AddReview /> : <Login /> }/>
         </Routes>
       </Suspense>
      

@@ -5,7 +5,7 @@ import { Camera } from 'lucide-react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 const ProfileSection = () => {
-  const {authUser, isLoggedIn, isLoggingIn, LogOut} = useAuthStore()
+  const {authUser, isLoggedIn, LogOut} = useAuthStore()
   console.log(authUser)
 
   const navigate = useNavigate()
