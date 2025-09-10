@@ -3,9 +3,11 @@ import { useAuthStore } from '../States/authStore'
 import defaultPfp from '../assets/Assets/Frontend_Assets/images.png'
 import { Camera } from 'lucide-react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { usePictureStore } from '../States/profilePictureStore'
 
 const ProfileSection = () => {
   const {authUser, isLoggedIn, LogOut} = useAuthStore()
+  const {handlePictureSubmit, picture, isPictureLoading} = usePictureStore()
   console.log(authUser)
 
   const navigate = useNavigate()
@@ -15,6 +17,10 @@ const ProfileSection = () => {
     return null
   }
 
+   if(isPictureLoading){
+    return <div className="flex justify-center"><span className="loading loading-spinner loading-xl h-screen "></span></div>
+   }
+
   function handleLogout (){
     LogOut()
     navigate("/login")
@@ -23,10 +29,10 @@ const ProfileSection = () => {
     <div className='bg-zinc-900 h-[90.7vh] text-white w-full'>
       <div className='flex flex-col gap-5 items-center'>
         <div className='relative mt-20'>
-        <img src={defaultPfp} className='rounded-full' alt="" />
+        <img src={picture ? picture : defaultPfp} className='rounded-full w-60' alt="" />
         <label htmlFor="profilePic">
         <Camera  className='absolute bottom-0 right-10 cursor-pointer bg-zinc-900 rounded-full'/>
-        <input type="file"
+        <input onChange={handlePictureSubmit} type="file"
         id='profilePic' 
         className='hidden'
         />

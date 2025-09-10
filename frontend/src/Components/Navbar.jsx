@@ -5,10 +5,12 @@
     import gsap from 'gsap';
     import { useGSAP } from '@gsap/react';
     import { useAuthStore } from '../States/authStore';
+    import { usePictureStore } from '../States/profilePictureStore';
 
     const Navbar = () => {
       const {isLoggedIn, authUser} = useAuthStore()
       const [visible, setVisible] = useState(false)
+      const {picture} = usePictureStore()
       const navbarRef = useRef(null)
 
       // Use useGSAP hook properly
@@ -60,7 +62,7 @@
                   <Link to="/profile">
                   <div className="w-10 text-xl font-semibold h-10 rounded-full bg-gray-200 cursor-pointer flex items-center justify-center">
           {/* {authUser?.name.split("")[0] || "U"} */}
-          <img src="https://png.pngtree.com/png-clipart/20190904/original/pngtree-user-cartoon-girl-avatar-png-image_4492903.jpg" alt="" />
+          <img src={picture} alt="" className='rounded-full' />
         </div>
                   </Link>
       ) : (
