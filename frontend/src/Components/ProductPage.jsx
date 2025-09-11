@@ -7,10 +7,12 @@ import star from "../assets/Assets/Frontend_Assets/star_icon.png";
 import { Link } from "react-router-dom";
 import all_product from "../assets/Assets/Frontend_Assets/all_product.js";
 import ReviewSection from "./ReviewSection.jsx";
+import { useCartStore } from "../States/addToCart.js";
 
 const ProductPage = () => {
   const { id } = useParams();
   const sizes = ["S", "M", "L", "XL", "XXL"];
+  const {addToCart} = useCartStore()
   const collectionProduct = new_collections.find(
     (item) => item.id === parseInt(id)
   );
@@ -95,7 +97,7 @@ const ProductPage = () => {
             </div>
           </div>
           <div className="flex gap-5 mt-10 max-md:justify-center">
-            <button className="px-5 py-3  border-2 rounded-xl cursor-pointer transition-all duration-150 hover:bg-orange-600 hover:text-white border-orange-600">
+            <button onClick={()=>{addToCart(product.id)}} className="px-5 py-3  border-2 rounded-xl cursor-pointer transition-all duration-150 hover:bg-orange-600 hover:text-white border-orange-600">
               Add to Cart
             </button>
             <button className="px-5 py-3 bg-orange-600 border-2 rounded-xl transition-all duration-150   hover:bg-transparent hover:text-black text-white cursor-pointer border-orange-600">
